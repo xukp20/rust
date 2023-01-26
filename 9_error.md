@@ -71,3 +71,5 @@ let f = File::open("Hello.txt").unwrap()
 
 ### 使用自定义类型进行验证
 
+在构造函数中进行合法性检查，避免重复
+
