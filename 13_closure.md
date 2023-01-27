@@ -80,3 +80,59 @@ let eq_closure = |z| {z == x}
 ##### move 关键字
 
 闭包定义之前加上move关键字，强制获得参数的所有权
+
+
+
+## 迭代器
+
+所有迭代器都实现了Iterator Trait
+
+要求实现next方法，返回一项，包裹在Some中
+
+### 创建迭代器
+
+- iter：不可变引用
+- into_iter：迭代器获得所有权
+- iter_mut：可变引用
+
+使用map方法，对迭代器的每个元素进行操作
+
+v.iter().map(|x| {x+1}) 获取每个元素 + 1的结果
+
+### 使用闭包捕获环境
+
+使用filter方法
+
+
+
+### 自定义迭代器
+
+即提供next方法
+
+计数器：
+
+```rust
+struct Counter {
+    count: u32,
+}
+
+impl Counter {
+    fn new() -> Counter {
+        Counter { count: 0 }
+    }
+}
+
+impl Iterator for Counter {
+    type Item = u32;
+
+    fn next(&mut self) -> Option<Self::Item> {
+        if self.count < 5 {
+            self.count += 1;
+            Some(self.count)
+        } else {
+            None
+        }
+    }
+}
+```
+
